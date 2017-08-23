@@ -43,10 +43,15 @@ public class JanelaForca extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e) {  
             if(e.getSource()==btnSubmeter){
-                if (cont < 5){       
+                if (cont < 5){    
+                    if (verificaLetra()){
+                        JOptionPane.showMessageDialog(null, "Existe a palavra!", "Jogo Forca", JOptionPane.PLAIN_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Não existe a palavra!", "Jogo Forca", JOptionPane.PLAIN_MESSAGE);
+                        cont ++;
+                    }
                     txtLetra.setText("");
-                    txtLetra.grabFocus();
-                    cont ++;
+                    txtLetra.grabFocus();                    
                 }else{
                     JOptionPane.showMessageDialog(null, "Voce excedeu o numero de tentativas!", "Jogo Forca", JOptionPane.PLAIN_MESSAGE);
                     dispose();
@@ -54,5 +59,20 @@ public class JanelaForca extends JFrame{
             }
                 
         }
+    }
+    
+    private boolean verificaLetra(){
+        boolean retorno = false;
+        String palavra = txtPalavra.getText();
+        int i;
+        Character letra;
+        for (i = 0; i < palavra.length(); i++){
+            if (txtLetra.equals(palavra.charAt(i) + "")){
+                retorno = true;
+            }else{
+                retorno = false;
+            }
+        }
+        return retorno;
     }
 }

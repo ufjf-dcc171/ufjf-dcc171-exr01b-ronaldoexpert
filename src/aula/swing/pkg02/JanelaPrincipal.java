@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 public class JanelaPrincipal extends JFrame{
     JButton btnAbrirBaskara = new JButton("Formula de Baskara");
     JButton btnAbrirForca = new JButton("Abrir Forca");
+    JButton btnAbrirCheckBox = new JButton("Abrir CheckBox");
     
     public JanelaPrincipal() throws HeadlessException{
         super("JanelaPrincipal");
@@ -20,8 +21,10 @@ public class JanelaPrincipal extends JFrame{
         
         add(btnAbrirBaskara);
         add(btnAbrirForca);
+        add(btnAbrirCheckBox);
         btnAbrirBaskara.addActionListener(new onClickBotao());
         btnAbrirForca.addActionListener(new onClickBotao());
+        btnAbrirCheckBox.addActionListener(new onClickBotao());
     }
 
     private class onClickBotao implements ActionListener{
@@ -42,6 +45,14 @@ public class JanelaPrincipal extends JFrame{
                 janela2.setLocationRelativeTo(null);
                 janela2.setVisible(true);
                 janela2.setTitle("Jogo da Forca");
+                
+            }else if (e.getSource()==btnAbrirCheckBox){
+                JanelaCheckBox janela2 = new JanelaCheckBox();
+                janela2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                janela2.setSize(400, 400);
+                janela2.setLocationRelativeTo(null);
+                janela2.setVisible(true);
+                janela2.setTitle("Teste CheckBox");
             }
                 
         }
