@@ -21,7 +21,7 @@ public class JanelaCheckBox extends JFrame{
     private final JTextField txtValorDolar = new JTextField();
     private final JCheckBox chkTributado = new JCheckBox("Tributado (+60%)");
     private final JCheckBox chkICMS = new JCheckBox("ICMS (+18%)");
-    private final JLabel lblVlrDolar = new JLabel("Vlr Dolar");
+    private final JLabel lblVlrDolar = new JLabel("Cotação Dolar");
     private final JLabel lblVlrReal = new JLabel("vlr Produto em R$");
     private final JLabel lblVlrTotal = new JLabel("Vlr Total do Produto");
     private final JButton btnCalcular = new JButton("Calcular");
@@ -29,7 +29,7 @@ public class JanelaCheckBox extends JFrame{
     public JanelaCheckBox() throws HeadlessException{
         super("JanelaCheckBox");
         setLayout(new FlowLayout());
-        painel.setLayout(new GridLayout(11, 1));
+        painel.setLayout(new GridLayout(18, 1));
         
         painel.add(lblVlrDolar);
         painel.add(txtValorDolar);
@@ -47,7 +47,7 @@ public class JanelaCheckBox extends JFrame{
         
         btnCalcular.addActionListener(new btnCalcularOnClick());
         
-        
+        txtValorFinal.setEditable(false);
         add(painel);
     }
     

@@ -12,6 +12,8 @@ public class JanelaPrincipal extends JFrame{
     JButton btnAbrirBaskara = new JButton("Formula de Baskara");
     JButton btnAbrirForca = new JButton("Abrir Forca");
     JButton btnAbrirCheckBox = new JButton("Abrir CheckBox");
+    JButton btnAbrirRadioButton = new JButton("Abrir RadioButton");
+    JButton btnAbrirComboBox = new JButton("Abrir ComboBox");
     
     public JanelaPrincipal() throws HeadlessException{
         super("JanelaPrincipal");
@@ -22,9 +24,14 @@ public class JanelaPrincipal extends JFrame{
         add(btnAbrirBaskara);
         add(btnAbrirForca);
         add(btnAbrirCheckBox);
+        add(btnAbrirRadioButton);
+        add(btnAbrirComboBox);
+        
         btnAbrirBaskara.addActionListener(new onClickBotao());
         btnAbrirForca.addActionListener(new onClickBotao());
         btnAbrirCheckBox.addActionListener(new onClickBotao());
+        btnAbrirRadioButton.addActionListener(new onClickBotao());
+        btnAbrirComboBox.addActionListener(new onClickBotao());
     }
 
     private class onClickBotao implements ActionListener{
@@ -53,8 +60,23 @@ public class JanelaPrincipal extends JFrame{
                 janela2.setLocationRelativeTo(null);
                 janela2.setVisible(true);
                 janela2.setTitle("Teste CheckBox");
-            }
                 
+            }else if (e.getSource()==btnAbrirRadioButton){
+                JanelaRadioButton janela2 = new JanelaRadioButton();
+                janela2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                janela2.setSize(400, 400);
+                janela2.setLocationRelativeTo(null);
+                janela2.setVisible(true);
+                janela2.setTitle("Teste RadioButton");
+            
+            }else if (e.getSource()==btnAbrirComboBox){
+                JanelaComboBox janela2 = new JanelaComboBox();
+                janela2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                janela2.setSize(400, 400);
+                janela2.setLocationRelativeTo(null);
+                janela2.setVisible(true);
+                janela2.setTitle("Teste ComboBox");
+            }    
         }
     }
     

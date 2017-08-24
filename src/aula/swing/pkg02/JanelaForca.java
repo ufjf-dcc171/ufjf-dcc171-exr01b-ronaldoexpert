@@ -65,13 +65,18 @@ public class JanelaForca extends JFrame{
         boolean retorno = false;
         String palavra = txtPalavra.getText();
         int i;
-        Character letra;
+        String letra;
+        String letraComp;
         for (i = 0; i < palavra.length(); i++){
-            if (txtLetra.equals(palavra.charAt(i) + "")){
-                retorno = true;
-            }else{
-                retorno = false;
-            }
+            letra = palavra.charAt(i) + "";
+            letraComp = txtLetra.getText();
+            if (retorno == false){
+                if (letra.equals(letraComp)){
+                    retorno = true;
+                }else{
+                    retorno = false;
+                }
+            }            
         }
         return retorno;
     }
