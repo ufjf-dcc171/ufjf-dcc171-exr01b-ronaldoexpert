@@ -14,6 +14,7 @@ public class JanelaPrincipal extends JFrame{
     JButton btnAbrirCheckBox = new JButton("Abrir CheckBox");
     JButton btnAbrirRadioButton = new JButton("Abrir RadioButton");
     JButton btnAbrirComboBox = new JButton("Abrir ComboBox");
+    JButton btnAbrirLista = new JButton("Abrir Lista");
     
     public JanelaPrincipal() throws HeadlessException{
         super("JanelaPrincipal");
@@ -26,12 +27,14 @@ public class JanelaPrincipal extends JFrame{
         add(btnAbrirCheckBox);
         add(btnAbrirRadioButton);
         add(btnAbrirComboBox);
+        add(btnAbrirLista);
         
         btnAbrirBaskara.addActionListener(new onClickBotao());
         btnAbrirForca.addActionListener(new onClickBotao());
         btnAbrirCheckBox.addActionListener(new onClickBotao());
         btnAbrirRadioButton.addActionListener(new onClickBotao());
         btnAbrirComboBox.addActionListener(new onClickBotao());
+        btnAbrirLista.addActionListener(new onClickBotao());
     }
 
     private class onClickBotao implements ActionListener{
@@ -76,6 +79,14 @@ public class JanelaPrincipal extends JFrame{
                 janela2.setLocationRelativeTo(null);
                 janela2.setVisible(true);
                 janela2.setTitle("Teste ComboBox");
+            
+            }else if (e.getSource()==btnAbrirLista){
+                JanelaLista janela2 = new JanelaLista();
+                janela2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                janela2.setSize(400, 400);
+                janela2.setLocationRelativeTo(null);
+                janela2.setVisible(true);
+                janela2.setTitle("Teste Lista");
             }    
         }
     }

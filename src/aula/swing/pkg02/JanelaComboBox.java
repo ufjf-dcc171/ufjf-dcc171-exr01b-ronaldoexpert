@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class JanelaComboBox extends JFrame{
     private final JPanel painel = new JPanel(); 
@@ -19,9 +20,12 @@ public class JanelaComboBox extends JFrame{
     private final JCheckBox chkBacon = new JCheckBox("Bacon");
     private final JCheckBox chkTomate = new JCheckBox("Tomate");
     private final JTextField txtPedido = new JTextField(25);
+    private final JLabel lblPao = new JLabel("* Pão *");
+    private final JLabel lblRecheio = new JLabel("* Recheio *");
+    private final JLabel lblQueijo = new JLabel("* Queijo *");
     
     public JanelaComboBox() throws HeadlessException{
-        super("JanelaLista");
+        super("JanelaComboBox");
         setLayout(new FlowLayout());
         painel.setLayout(new GridLayout(11, 1));
         
@@ -30,12 +34,15 @@ public class JanelaComboBox extends JFrame{
         String[] queijos = {"Suíço", "Prato", "Cheddar", "Sem Queijo"};
         
         cbPao = new JComboBox<>(paes);
+        painel.add(lblPao);
         painel.add(cbPao);
         
         cbRecheio = new JComboBox<>(recheios);
+        painel.add(lblRecheio);
         painel.add(cbRecheio);
         
         cbQueijo = new JComboBox<>(queijos);
+        painel.add(lblQueijo);
         painel.add(cbQueijo);
         
         painel.add(chkBacon);
