@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
@@ -32,30 +33,32 @@ public class JanelaLista extends JFrame {
         super("JanelaLista");
         setLayout(new BorderLayout(5,5));
         
-        JPanel painel = new JPanel(new BorderLayout(5,5));
-        painel.setLayout(new BoxLayout(painel, BoxLayout.Y_AXIS));
-       
+        JPanel pnlNorth = new JPanel(new BorderLayout(5, 5));
+        JPanel pnlBotoes = new JPanel(new BorderLayout(5, 5));
+        JPanel pnlLista = new JPanel(new BorderLayout(5, 5));
+        JPanel pnlIdade = new JPanel(new BorderLayout(5, 5));
+        JPanel pnlNome = new JPanel(new BorderLayout(5, 5));
         
+        pnlNome.add(lblNome, BorderLayout.NORTH);
+        pnlNome.add(txtNome, BorderLayout.SOUTH);
         
-        painel.add(lblNome, BorderLayout.WEST);
-        painel.add(txtNome, BorderLayout.CENTER);
+        pnlIdade.add(lblIdade, BorderLayout.NORTH);
+        pnlIdade.add(txtIdade, BorderLayout.SOUTH);
         
-        painel.add(lblIdade, BorderLayout.WEST);
-        painel.add(txtIdade, BorderLayout.CENTER);
+        pnlNorth.add(pnlNome, BorderLayout.NORTH);
+        pnlNorth.add(pnlIdade, BorderLayout.SOUTH);
         
+        add(pnlNorth, BorderLayout.NORTH);
         
-        painel.add(new JScrollPane(lstLista), BorderLayout.CENTER);
+        pnlBotoes.add(btnAdd, BorderLayout.NORTH);
+        pnlBotoes.add(btnExcluir, BorderLayout.SOUTH);
+        add(pnlBotoes, BorderLayout.CENTER);
         
-        JPanel painel2 = new JPanel(new BorderLayout(5,5));
-        painel2.setLayout(new BoxLayout(painel2, BoxLayout.Y_AXIS));
-        
-        painel.add(btnAdd, BorderLayout.NORTH);
-        painel.add(btnExcluir, BorderLayout.NORTH);
-        
-        add(painel, BorderLayout.NORTH);
+        pnlLista.add(new JScrollPane(lstLista), BorderLayout.SOUTH);
+        add(pnlLista, BorderLayout.SOUTH);
         
         lstLista.setVisibleRowCount(10);
-        lstLista.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        lstLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         //Ação enter no textfield para adicionar na lista
         btnAdd.addActionListener(new onClickBotao());
