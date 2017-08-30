@@ -10,11 +10,11 @@ import javax.swing.JFrame;
 
 public class JanelaPrincipal extends JFrame{
     JButton btnAbrirBaskara = new JButton("Formula de Baskara");
-    JButton btnAbrirForca = new JButton("Abrir Forca");
-    JButton btnAbrirCheckBox = new JButton("Abrir CheckBox");
-    JButton btnAbrirRadioButton = new JButton("Abrir RadioButton");
-    JButton btnAbrirComboBox = new JButton("Abrir ComboBox");
-    JButton btnAbrirLista = new JButton("Abrir Lista");
+    JButton btnAbrirForca = new JButton("Jogo da Forca");
+    JButton btnAbrirCheckBox = new JButton("EXR5) Valor do produto em dolar");
+    JButton btnAbrirRadioButton = new JButton("EXR2) Jogo Pedra/Papel/Tesoura");
+    JButton btnAbrirComboBox = new JButton("Exemplo ComboBox");
+    JButton btnAbrirLista = new JButton("Lista Pessoa");
     
     public JanelaPrincipal() throws HeadlessException{
         super("JanelaPrincipal");
@@ -83,7 +83,7 @@ public class JanelaPrincipal extends JFrame{
             }else if (e.getSource()==btnAbrirLista){
                 JanelaLista janela2 = new JanelaLista();
                 janela2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                janela2.setSize(400, 400);
+                janela2.setSize(200, 400);
                 janela2.setLocationRelativeTo(null);
                 janela2.setVisible(true);
                 janela2.setTitle("Teste Lista");

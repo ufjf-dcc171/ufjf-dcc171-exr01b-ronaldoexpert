@@ -7,6 +7,9 @@ import java.awt.HeadlessException;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -17,17 +20,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 
 public class JanelaLista extends JFrame {
     private final JLabel lblNome = new JLabel("Nome");
     private final JLabel lblIdade = new JLabel("Idade");
     private final JTextField txtNome = new JTextField("", 20);
-    private final JTextField txtIdade = new JTextField("", 20);
+    private final JTextField txtIdade = new JTextField("", 10);
     private final JButton btnExcluir = new JButton("Excluir");
     private final JButton btnAdd = new JButton("Adicionar");
     private final JList lstLista = new JList(new DefaultListModel());
     private final DefaultListModel modelo = (DefaultListModel) lstLista.getModel();
+    
+    private int indexSelected;      //Index do elemento selecionado
+    private String status = "Novo"; //Variavel para saber se esta editando ou não
     
     public JanelaLista() throws HeadlessException{
         super("JanelaLista");
@@ -64,8 +71,45 @@ public class JanelaLista extends JFrame {
         btnAdd.addActionListener(new onClickBotao());
        
         //Ação no botão para excluir elemento
-        btnExcluir.addActionListener(new onClickBotao()); 
+        btnExcluir.addActionListener(new onClickBotao());
+        
+        
+        lstLista.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                String item;
+                JList list = (JList)evt.getSource();
+                if (evt.getClickCount() == 2) {
+                    // Double-click detected
+                    item = "" + lstLista.getSelectedValue();
+                    String[] itemS = item.split(Pattern.quote(" - "));
+                    
+                    txtNome.setText("" + itemS[0]);
+                    txtIdade.setText("" + itemS[1]);
+                    indexSelected = lstLista.getSelectedIndex();
+                    status = "Update";
+                }
+            }
+        });
+        
+        
     }  
+    public boolean validaCampos(){
+        Boolean retorno = true;
+        
+        if ("".equals(txtNome.getText())){
+            JOptionPane.showMessageDialog(null, "Informe o nome.", "Lista", JOptionPane.PLAIN_MESSAGE);
+            txtNome.grabFocus();
+            retorno = false;
+        }                
+
+        if ("".equals(txtIdade.getText())){
+            JOptionPane.showMessageDialog(null, "Informe a idade.", "Lista", JOptionPane.PLAIN_MESSAGE);
+            txtIdade.grabFocus();
+            retorno = false;
+        }        
+        
+        return retorno;
+    }
     
     private class onClickBotao implements ActionListener{
         @Override
@@ -76,13 +120,21 @@ public class JanelaLista extends JFrame {
                     modelo.removeElement(o);
                 }
             }else if(e.getSource()==btnAdd){
-                Pessoa p = new Pessoa(txtNome.getText(), Integer.parseInt(txtIdade.getText()));
-                modelo.addElement(p.toString());
-                txtNome.setText("");
-                txtIdade.setText("");
-                txtNome.grabFocus();
+                if (validaCampos() == true){
+                    Pessoa p = new Pessoa(txtNome.getText(), Integer.parseInt(txtIdade.getText()));
+
+                    if (status == "Novo"){
+                        modelo.addElement(p.toString());                    
+                    }else{
+                        modelo.setElementAt(p.toString(), indexSelected);
+                        status = "Novo";
+                    }
+
+                    txtNome.setText("");
+                    txtIdade.setText("");
+                    txtNome.grabFocus();    
+                }
             }
-                
         }
     }
 }
